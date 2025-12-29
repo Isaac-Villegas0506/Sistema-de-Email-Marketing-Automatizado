@@ -78,7 +78,7 @@ El esquema está diseñado para minimizar bloqueos y maximizar throughput en ent
 ### Producción (Railway/Render)
 1.  Conectar repositorio.
 2.  Configurar Variables de Entorno.
-3.  El `Dockerfile` o `Procfile` se encargará de levantar Nginx/PHP y el Worker.
+3.  El `Dockerfile` o `Procfile` se encargará de levantar Nginx/PHP y el Worker
 
 ---
 **Autor**: [Isaac-Villegas-Dev]
