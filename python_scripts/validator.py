@@ -5,16 +5,11 @@ import random
 import re
 
 def validate_email(email):
-    # Simular verificaciones complejas
-    # Regex
     if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
         return False
     
-    # Simular latencia de búsqueda DNS de registros MX
-    # Latencia aleatoria entre 10ms y 50ms
     time.sleep(random.uniform(0.01, 0.05)) 
     
-    # 5% de probabilidad de ser dominio/mx "inválido"
     if random.random() < 0.05:
         return False
         
@@ -49,8 +44,7 @@ def main():
             if not email:
                 continue
             
-            # Basic sanitization
-            email = email.split(',')[0].strip() # Handle CSV simple lines
+            email = email.split(',')[0].strip()
 
             if validate_email(email):
                 results["valid"].append(email)
@@ -62,7 +56,6 @@ def main():
     results["total_processed"] = len(results["valid"]) + len(results["invalid"])
     results["processing_time"] = round(time.time() - start_time, 4)
     
-    # Output JSON to stdout
     print(json.dumps(results))
 
 if __name__ == "__main__":

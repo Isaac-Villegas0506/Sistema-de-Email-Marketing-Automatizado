@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('name');
             $table->text('content')->nullable();
             $table->enum('status', ['draft', 'processing_file', 'queued', 'sending', 'completed', 'failed', 'paused'])->default('draft');
-            // Logic metrics
             $table->integer('total_contacts')->default(0);
             $table->integer('processed_count')->default(0);
             $table->integer('failed_count')->default(0);
@@ -35,8 +34,6 @@ return new class extends Migration
             $table->enum('status', ['pending', 'processing', 'completed', 'failed'])->default('pending');
             $table->string('message_id')->nullable(); 
             $table->timestamps();
-            
-            // Helpful index for batch fetching
             $table->index(['campaign_id', 'status']);
         });
 
@@ -44,12 +41,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('campaign_id')->constrained()->cascadeOnDelete();
             $table->string('email');
-            $table->string('status'); // sent, failed, retry
+            $table->string('status');
             $table->integer('latency_ms')->default(0);
             $table->text('error_message')->nullable();
             $table->timestamp('sent_at')->nullable();
             $table->timestamps();
-            
             $table->index('campaign_id');
         });
     }

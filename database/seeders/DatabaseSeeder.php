@@ -10,12 +10,8 @@ use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // Demo User
         User::firstOrCreate([
             'email' => 'demo@example.com',
         ], [
@@ -24,7 +20,6 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        // Seed 50 Contacts for quick starts (optional, main method is CSV)
         if (Contact::count() == 0) {
             $data = [];
             for ($i = 0; $i < 50; $i++) {

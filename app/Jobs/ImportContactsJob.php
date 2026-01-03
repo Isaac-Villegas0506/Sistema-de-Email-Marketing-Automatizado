@@ -27,19 +27,14 @@ class ImportContactsJob implements ShouldQueue
     {
         $this->campaign->update(['status' => 'processing_file']);
 
-
         $scriptPath = base_path('python_scripts/validator.py');
-        
-
         $result = Process::run(['python', $scriptPath, $this->filePath]);
 
         $validEmails = [];
 
-
         if ($result->failed() || empty($json = json_decode($result->output(), true))) {
             Log::warning("Python falló o no retornó JSON. Usando Fallback PHP. Error: " . $result->errorOutput());
             
-
             $lines = file($this->filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($lines as $line) {
                 $email = trim(str_getcsv($line)[0] ?? '');
@@ -57,14 +52,12 @@ class ImportContactsJob implements ShouldQueue
         foreach ($chunks as $chunk) {
             $contactIds = [];
             foreach ($chunk as $email) {
-
                 $contact = Contact::firstOrCreate(
                     ['email' => $email],
                     ['status' => 'valid']
                 );
                 $contactIds[] = $contact->id;
             }
-
 
             $jobData = [];
             foreach ($contactIds as $cid) {
@@ -84,7 +77,6 @@ class ImportContactsJob implements ShouldQueue
             'status' => 'queued', 
             'total_contacts' => count($validEmails)
         ]);
-
 
         DispatchCampaignJob::dispatch($this->campaign);
     }

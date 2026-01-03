@@ -23,10 +23,8 @@
 </head>
 <body class="bg-[#0f172a] text-white font-sans antialiased selection:bg-indigo-500 selection:text-white">
     <div class="flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
-        <!-- Mobile Sidebar Overlay -->
         <div x-show="sidebarOpen" @click="sidebarOpen = false" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-40 md:hidden" style="display: none;"></div>
 
-        <!-- Sidebar -->
         <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 w-72 glass-panel border-r-0 border-r border-white/5 flex flex-col z-50 shadow-2xl transition-transform duration-300 md:translate-x-0 md:relative md:flex bg-slate-900 md:bg-transparent">
             <div class="p-8 flex items-center justify-between gap-3">
                  <div class="flex items-center gap-3">
@@ -35,7 +33,6 @@
                     </div>
                     <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">EmailFlow</h1>
                  </div>
-                 <!-- Mobile Close Button -->
                  <button @click="sidebarOpen = false" class="md:hidden text-slate-400 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                  </button>
@@ -73,12 +70,9 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="flex-1 overflow-y-auto relative bg-gradient-to-br from-[#0f172a] to-[#1e1b4b]">
-            <!-- Header -->
             <header class="h-20 md:bg-transparent flex items-center justify-between px-4 md:px-8 sticky top-0 z-10 glass-panel md:backdrop-filter-none md:border-none">
                 <div class="flex items-center gap-4">
-                    <!-- Hamburger Button -->
                     <button @click="sidebarOpen = true" class="md:hidden p-2 rounded-lg text-slate-400 hover:bg-white/10 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
@@ -86,13 +80,11 @@
                 </div>
                 
                 <div class="flex items-center gap-2 md:gap-4">
-                     <!-- Notifications -->
                      <button class="p-2 rounded-full hover:bg-white/5 text-slate-400 hover:text-white transition-colors relative">
                         <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500 border-2 border-[#0f172a]"></span>
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
                      </button>
                      
-                     <!-- Profile -->
                      <div class="flex items-center gap-3 pl-4 border-l border-white/10">
                          <div class="text-right hidden sm:block">
                              <p class="text-sm font-medium text-white">Reclutador / Visitante</p>

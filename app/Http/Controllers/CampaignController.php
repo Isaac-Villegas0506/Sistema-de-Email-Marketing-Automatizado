@@ -34,14 +34,11 @@ class CampaignController extends Controller
             'status' => 'processing_file',
         ]);
 
-        // Trigger cleanup to keep DB light for demo
         try {
             \Illuminate\Support\Facades\Artisan::call('campaigns:cleanup');
         } catch (\Exception $e) {
-            // Ignore cleanup errors to not block creation
             \Illuminate\Support\Facades\Log::warning('Auto-cleanup failed: ' . $e->getMessage());
         }
-
 
         ImportContactsJob::dispatch($campaign, storage_path('app/' . $path));
 

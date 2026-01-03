@@ -3,7 +3,6 @@
 @section('title', 'Dashboard en Tiempo Real')
 
 @section('content')
-    <!-- Stats Grid -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-8">
         <div class="glass-panel p-4 md:p-6 rounded-2xl shadow-lg relative overflow-hidden group">
             <div class="hidden md:block absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -58,7 +57,6 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Live Chart -->
         <div class="glass-panel p-6 rounded-2xl shadow-lg">
             <div class="flex items-center justify-between mb-6">
                 <h4 class="text-lg font-semibold text-white">Métricas de Envío (Simulado)</h4>
@@ -70,7 +68,6 @@
             <p class="text-xs text-slate-500 mt-4 text-center">Datos actualizados en tiempo real al recargar la página.</p>
         </div>
 
-        <!-- Recent Activity -->
         <div class="glass-panel p-6 rounded-2xl shadow-lg">
              <div class="flex items-center justify-between mb-6">
                 <h4 class="text-lg font-semibold text-white">Actividad en Vivo</h4>
@@ -111,9 +108,8 @@
     <script>
         const ctx = document.getElementById('throughputChart').getContext('2d');
         
-        // Gradient for the chart
         let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.5)'); // Indigo
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.5)');
         gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
 
         new Chart(ctx, {

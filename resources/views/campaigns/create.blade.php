@@ -18,7 +18,6 @@
                         <label class="block text-sm font-medium text-slate-300">Contenido (Demo)</label>
                     </div>
 
-                    <!-- Leyenda de Variables -->
                     <div class="bg-indigo-900/20 border border-indigo-500/30 rounded-lg p-4 mb-3">
                         <p class="text-sm font-semibold text-indigo-300 mb-2 flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -46,7 +45,6 @@
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-4">
                         <label class="block text-sm font-medium text-slate-300">Lista de Contactos (CSV)</label>
                         
-                        <!-- Botón Visible de Descarga -->
                         <a href="{{ asset('demo_contacts.csv') }}" download class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                             <span>📥 Descargar CSV de Ejemplo</span>

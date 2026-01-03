@@ -23,11 +23,6 @@
                     } }}
                  </strong></p>
                  <br>
-                 <form action="{{ route('campaigns.update', $campaign) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                     <!-- Hidden trigger to retry or something if needed -->
-                 </form>
             </div>
             <div class="text-right">
                 <p class="text-3xl font-mono text-white">{{ number_format($campaign->processed_count) }} <span class="text-slate-500 text-lg">/ {{ number_format($campaign->total_contacts) }}</span></p>
@@ -35,13 +30,11 @@
             </div>
         </div>
         
-        <!-- Progress Bar -->
         <div class="mt-6 w-full bg-slate-900 rounded-full h-4 overflow-hidden">
              <div class="bg-indigo-500 h-full transition-all duration-700 ease-out" style="width: {{ $campaign->total_contacts > 0 ? ($campaign->processed_count / $campaign->total_contacts) * 100 : 0 }}%"></div>
         </div>
     </div>
 
-    <!-- Logs -->
     <h3 class="text-lg font-semibold mb-4">Logs Recientes</h3>
     <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
         <table class="w-full text-left text-sm text-slate-300">

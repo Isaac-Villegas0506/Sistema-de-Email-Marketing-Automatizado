@@ -23,13 +23,8 @@ class SendEmailJob implements ShouldQueue
     public function __construct(public EmailJob $emailJob)
     {}
 
-    /**
-     * @throws Throwable
-     */
     public function handle(): void
     {
-
-        
         $this->emailJob->update(['status' => 'processing']);
 
         $latency = rand(50, 500);
@@ -44,7 +39,6 @@ class SendEmailJob implements ShouldQueue
             
             EmailLog::create([
                 'campaign_id' => $this->emailJob->campaign_id,
-
                 'email' => $this->emailJob->contact->email,
                 'status' => 'sent',
                 'latency_ms' => $latency,
@@ -61,7 +55,6 @@ class SendEmailJob implements ShouldQueue
          
          EmailLog::create([
             'campaign_id' => $this->emailJob->campaign_id,
-
             'email' => $this->emailJob->contact->email,
             'status' => 'failed',
             'error_message' => $exception->getMessage(),

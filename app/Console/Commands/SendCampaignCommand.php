@@ -8,23 +8,9 @@ use App\Jobs\DispatchCampaignJob;
 
 class SendCampaignCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'send:campaign {id?}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Manually dispatch a campaign for sending';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
         $id = $this->argument('id');
