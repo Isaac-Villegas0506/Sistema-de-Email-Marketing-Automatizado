@@ -1,85 +1,153 @@
-# Sistema de Email Marketing Automatizado (Portfolio Demo)
+# Sistema de Email Marketing Automatizado - DEMO
 
-## 📌 Descripción del Proyecto
-Esta es una **Demo Técnica** diseñada para demostrar capacidades avanzadas en arquitectura backend, procesamiento asíncrono y alta concurrencia utilizando un stack gratuito y moderno.
+![Laravel](https://img.shields.io/badge/Laravel-11-red)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-blue)
+![SQLite](https://img.shields.io/badge/SQLite-Database-green)
 
-El sistema simula el envío masivo de correos electrónicos (Sistema de Email Masivo), gestionando campañas, listas de contactos y métricas en tiempo real, todo sin enviar un solo correo real para evitar spam y costes, pero ejecutando toda la lógica de validación, encolamiento y procesamiento.
+## 📋 Descripción
 
-### 🚀 Objetivos de la Demo
-- **Performance**: Procesar miles de simulaciones por minuto.
-- **Resiliencia**: Manejo de fallos, reintentos automáticos y backoff exponencial en colas.
-- **Escalabilidad**: Arquitectura desacoplada lista para escalar horizontalmente.
-- **Validación Avanzada**: Integración con Python para procesamiento pesado de datos.
+Sistema de email marketing desarrollado con Laravel 11, diseñado para gestionar campañas de email masivo con seguimiento en tiempo real y análisis detallado.
 
-## 🛠 Tech Stack (100% Free Tier Compatible)
+**⚠️ IMPORTANTE**: Este es un proyecto de **demostración** para portafolio. Los emails y datos son simulados.
 
-### Backend
-- **Framework**: Laravel 11 (PHP 8.2)
-- **Queue Driver**: Database (Optimizado para demostración sin Redis)
-- **Scheduler**: Cron simulado (Laravel Scheduler)
-- **Validación**: Python 3 (Scripts externos)
+## ✨ Características
 
-### Frontend
-- **Interface**: Blade Templates
-- **Estilos**: Tailwind CSS 3
-- **Gráficos**: Chart.js (Visualización en tiempo real)
-- **Interacción**: Vanilla JS (Sin frameworks pesados)
+- 📊 Dashboard en tiempo real con estadísticas
+- 📧 Gestión de campañas de email
+- 📈 Gráficos de rendimiento interactivos
+- 🎯 Sistema de colas asíncrono
+- 💾 Base de datos SQLite (portable)
+- 🎨 Interfaz moderna con TailwindCSS y Alpine.js
+- 🔒 Límite de 3 campañas (auto-limpieza)
+- 📱 Diseño responsive
 
-### Infraestructura (Demo)
-- **Base de Datos**: MySQL / MariaDB (Compatible con Railway/Render/InfinityFree)
-- **Deploy**: Dockerfile incluido para despliegue en Railway/Render/Fly.io.
+## 🚀 Instalación Local
 
-## 🏗 Arquitectura del Sistema
-
-```mermaid
-graph TD
-    User["Usuario"] -->|Sube CSV/Crea Campaña| Web["Laravel Web"]
-    Web -->|Valida CSV| Python["Python Script Worker"]
-    Python -->|Resultados| DB[("MySQL")]
-    Web -->|Despacha Jobs| Queue["Queue System (DB)"]
-    Worker["Laravel Queue Worker"] -->|Procesa Jobs| Queue
-    Worker -->|Simula Envío| Sender["Simulador de Envío"]
-    Sender -->|Latency/Error| Metrics["Logs & Metrics"]
-    Metrics --> DB
-    Dashboard["Dashboard"] -->|Lee Métricas| DB
-```
-
-### 🧠 ¿Por qué NO se envían correos reales?
-1.  **Seguridad y Reputación**: Enviar 10k correos de prueba dañaría la reputación de IPs y dominios.
-2.  **Costos**: Servicios como SendGrid/AWS SES tienen costos o límites estrictos en free tier.
-3.  **Foco en Ingeniería**: El desafío técnico está en el *procesamiento*, *encolado* y *concurrencia*, no en la llamada API a un SMTP.
-
-## 📊 Base de Datos y Optimización
-El esquema está diseñado para minimizar bloqueos y maximizar throughput en entornos limitados:
-
-- **`campaigns`**: Estado maestro de la campaña.
-- **`contacts`**: Lista global de contactos (validada).
-- **`email_jobs`**: Tabla de "tareas" para desacoplar la lógica de negocio de la tabla `jobs` del framework.
-- **`email_logs`**: Tabla de auditoría particionable en el futuro.
-- **Indices**: Optimizados para queries de agregación (COUNT, AVG) en el dashboard.
-
-## ⚙️ Cómo Desplegar (Deploy)
-
-### Requisitos Previos
+### Requisitos
 - PHP 8.2+
 - Composer
-- MySQL/MariaDB
-- Python 3
+- Node.js & NPM
 
-### Instalación Local
-1.  Clonar el repositorio.
-2.  `composer install`
-3.  `npm install && npm run build`
-4.  Configurar `.env` (DB_CONNECTION, etc).
-5.  `php artisan migrate --seed` (Crea usuario demo y 10k contactos).
-6.  `php artisan serve`
-7.  En otra terminal: `php artisan queue:work --tries=3 --timeout=90`
+### Pasos
 
-### Producción (Railway/Render)
-1.  Conectar repositorio.
-2.  Configurar Variables de Entorno.
-3.  El `Dockerfile` o `Procfile` se encargará de levantar Nginx/PHP y el Worker
+```bash
+# 1. Clonar repositorio
+git clone <tu-repo>
+cd Sistema-de-Email-Marketing-Automatizado
+
+# 2. Instalar dependencias PHP
+composer install
+
+# 3. Instalar dependencias Node
+npm install
+
+# 4. Configurar entorno
+cp .env.example .env
+php artisan key:generate
+
+# 5. Crear base de datos
+php artisan migrate:fresh
+
+# 6. Poblar con datos de demo
+php artisan db:seed --class=DemoDataSeeder
+
+# 7. Compilar assets
+npm run build
+
+# 8. Servir aplicación
+php artisan serve
+```
+
+Visita: `http://localhost:8000`
+
+## 📦 Despliegue en Hosting
+
+### Opción 1: Vercel/Netlify (Recomendado)
+
+1. Conecta tu repositorio Git
+2. Configura las variables de entorno:
+   ```
+   APP_ENV=production
+   APP_DEBUG=false
+   APP_KEY=<genera-con-artisan-key-generate>
+   DB_CONNECTION=sqlite
+   ```
+
+3. Build commands:
+   ```
+   composer install --optimize-autoloader --no-dev
+   npm run build
+   php artisan migrate:fresh --seed --force
+   ```
+
+### Opción 2: cPanel / Hosting compartido
+
+1. Sube todos los archivos al servidor
+2. Configura el DocumentRoot a `/public`
+3. Crea archivo `.env`:
+   ```bash
+   cp .env.example .env
+   nano .env # Edita las configuraciones
+   ```
+4. Ejecuta:
+   ```bash
+   composer install --optimize-autoloader --no-dev
+   php artisan key:generate
+   php artisan migrate:fresh --seed --force
+   php artisan config:cache
+   php artisan route:cache
+   ```
+
+## 🗄️ Base de Datos
+
+El proyecto usa **SQLite** por defecto (archivo `database/database.sqlite`).
+
+Para resetear los datos de demo:
+```bash
+php artisan migrate:fresh --seed
+```
+
+## 🎯 Datos de Demostración
+
+Al ejecutar el seeder, se crean:
+- ✅ 3 campañas de ejemplo
+- ✅ 37 emails totales
+- ✅ 28 exitosos (75%)
+- ✅ 9 fallidos con errores realistas
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Backend**: Laravel 11
+- **Frontend**: TailwindCSS 3, Alpine.js
+- **Base de datos**: SQLite
+- **Build**: Vite
+- **Iconos**: Heroicons
+
+## 📝 Notas de Desarrollo
+
+- **Auto-limpieza**: La aplicación mantiene máximo 3 campañas para optimizar la base de datos
+- **Rate Limiting**: Máximo 10 requests por hora en rutas de campañas
+- **Modo Demo**: No envía emails reales, solo simula el proceso
+- **Errores**: Todos los mensajes de error son responsabilidad del destinatario
+
+## 🔐 Seguridad
+
+- ✅ CSRF Protection habilitado
+- ✅ Rate limiting configurado
+- ✅ Validación de inputs
+- ✅ Sanitización automática
+- ✅ Headers de seguridad
+
+## 📄 Licencia
+
+Este es un proyecto de demostración para portafolio personal.
+
+## 👤 Autor
+
+**Isaac Villegas**
+- GitHub: [@Isaac-Villegas0506](https://github.com/Isaac-Villegas0506)
+- Portafolio: [Tu URL]
 
 ---
-**Autor**: [Isaac-Villegas-Dev]
-**Versión**: 1.0.0
+
+**⚠️ Recordatorio**: Este proyecto es solo una demostración. Los datos son ficticios y no se envían emails reales.
