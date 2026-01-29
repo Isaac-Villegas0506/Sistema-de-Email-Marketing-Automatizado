@@ -146,7 +146,7 @@ Este es un proyecto de demostración para portafolio personal.
 
 **Isaac Villegas**
 - GitHub: [@Isaac-Villegas0506](https://github.com/Isaac-Villegas0506)
-- Portafolio: [Tu URL]
+- Portafolio: 
 
 ---
 
