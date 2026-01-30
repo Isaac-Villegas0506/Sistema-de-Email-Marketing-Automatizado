@@ -129,7 +129,7 @@
                                 <a 
                                     href="{{ url('/demo_contacts.csv') }}" 
                                     download="contactos_ejemplo.csv" 
-                                    class="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-400 hover:to-accent-400 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-md shadow-primary-500/20 hover:shadow-primary-500/30 z-20 relative cursor-pointer">
+                                    class="inline-flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-primary-500/30 text-zinc-300 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-all z-20 relative cursor-pointer">
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
                                     Descargar CSV
                                 </a>
@@ -156,7 +156,7 @@
                     <!-- Botón de envío -->
                     <button 
                         type="submit" 
-                        class="w-full bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-400 hover:to-accent-400 text-white py-3.5 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 flex items-center justify-center gap-2 cursor-pointer">
+                        class="w-full bg-primary-600 hover:bg-primary-500 text-white py-3.5 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 flex items-center justify-center gap-2 cursor-pointer">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
                         <span>Crear y Procesar Campaña</span>
                     </button>
